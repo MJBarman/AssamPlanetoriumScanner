@@ -47,11 +47,14 @@
                     android:text="User Details"
                     android:textSize="20sp" />
 
+
+
                 <com.google.android.material.card.MaterialCardView
                     style="?attr/materialCardViewFilledStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="15dp"
                     android:layout_weight="1">
 
@@ -80,6 +83,40 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
+                    android:layout_marginTop="10dp"
+                    style="?attr/materialCardViewFilledStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:padding="20dp"
+                            android:text="User role" />
+
+                        <TextView
+                            android:id="@+id/role"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:maxLines="1"
+                            android:padding="20dp"
+                            android:text=""
+                            android:textAlignment="textEnd" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/overall_bookings"
                     style="?attr/materialCardViewFilledStyle"
                     android:layout_width="match_parent"
@@ -99,16 +136,16 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:padding="20dp"
-                            android:text="Terminal ID" />
+                            android:text="Role ID" />
 
                         <TextView
-                            android:id="@+id/terminal_id"
+                            android:id="@+id/role_id"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:maxLines="1"
                             android:padding="20dp"
-                            android:text=""
+                            android:text="Scanner"
                             android:textAlignment="textEnd" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -132,16 +169,16 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:padding="20dp"
-                            android:text="User Role" />
+                            android:text="Name" />
 
                         <TextView
-                            android:id="@+id/role_id"
+                            android:id="@+id/name"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:maxLines="1"
                             android:padding="20dp"
-                            android:text="Scanner"
+                            android:text="Abhijeet"
                             android:textAlignment="textEnd" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -227,10 +264,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:padding="20dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginBottom="20dp"
+                    android:padding="20dp"
                     android:text="LOG OUT"
                     app:cornerRadius="10dp" />
             </LinearLayout>

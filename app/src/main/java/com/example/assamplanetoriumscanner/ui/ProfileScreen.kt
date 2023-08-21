@@ -39,6 +39,8 @@ class ProfileScreen : AppCompatActivity() {
                 object : TypeToken<User>() {}.type
             )
             binding.phone.text = user.mobile_no
+            binding.name.text = user.name
+            binding.roleId.text = user.role_id.toString()
         }
 
         //get application version code and version name to display on UI

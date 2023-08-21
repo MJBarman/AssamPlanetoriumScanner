@@ -37,7 +37,7 @@ class LoginScreen : AppCompatActivity() {
         setContentView(view)
         supportActionBar?.hide()
         // Apply dynamic color
-        DynamicColors.applyToActivitiesIfAvailable(application)
+//        DynamicColors.applyToActivitiesIfAvailable(application)
 
         sharedPreferences = this.getSharedPreferences("ASZCounter", MODE_PRIVATE)
         editor = sharedPreferences.edit()
