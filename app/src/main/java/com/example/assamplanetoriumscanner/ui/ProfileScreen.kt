@@ -1,13 +1,10 @@
 package com.example.assamplanetoriumscanner.ui
 
-import android.annotation.SuppressLint
-import android.content.Intent
 import android.content.SharedPreferences
 import android.content.SharedPreferences.Editor
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import cn.pedant.SweetAlert.BuildConfig
 import com.example.assamplanetoriumscanner.R
@@ -59,31 +56,27 @@ class ProfileScreen : AppCompatActivity() {
 
         binding.topAppBar.setNavigationOnClickListener { v -> onBackPressed() }
 
-        binding.btnSettingsLogOut.setOnClickListener {
-            showLogoutBottomSheet()
+        binding.btnLogOut.setOnClickListener {
+            val dialog = BottomSheetDialog(this)
+            val view = layoutInflater.inflate(R.layout.bottom_sheet_exit, null)
+            dialog.setContentView(view)
+
+            val btnExit = view.findViewById<Button>(R.id.exit)
+            val btnCancel = view.findViewById<Button>(R.id.cancel)
+
+            btnExit.setOnClickListener {
+                super.onBackPressed()
+                finishAffinity()
+            }
+
+            btnCancel.setOnClickListener {
+                dialog.dismiss()
+            }
+
+            dialog.show()
         }
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun showLogoutBottomSheet() {
-        val logoutBottomSheet = BottomSheetDialog(this@ProfileScreen)
-        logoutBottomSheet.setContentView(R.layout.bottom_sheet_exit)
-        val title = logoutBottomSheet.findViewById<TextView>(R.id.title)
-        val header = logoutBottomSheet.findViewById<TextView>(R.id.header)
-        val success = logoutBottomSheet.findViewById<Button>(R.id.success)
-        val cancel = logoutBottomSheet.findViewById<Button>(R.id.cancel)
-        title?.text = "Are you sure you want to logout?"
-        header?.text = "LOGOUT?"
-        success?.text = "YES"
-        cancel?.text = "CANCEL"
-        logoutBottomSheet.show()
-
-        success?.setOnClickListener {
-            editor.clear().apply()
-            startActivity(Intent(this@ProfileScreen, LoginScreen::class.java))
-        }
-        cancel?.setOnClickListener { logoutBottomSheet.dismiss() }
-    }
 
 //    override fun onBackPressed() {
 //        super.onBackPressed()
