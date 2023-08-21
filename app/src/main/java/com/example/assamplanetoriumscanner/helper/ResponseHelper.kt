@@ -1,7 +1,6 @@
-package com.amtron.zooticket.helper
+package com.example.assamplanetoriumscanner.helper
 
 import android.annotation.SuppressLint
-import com.example.ticketscanner.helper.ResponseData
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser

@@ -6,14 +6,13 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.amtron.zooticket.helper.NotificationsHelper
-import com.amtron.zooticket.helper.ResponseHelper
+import com.example.assamplanetoriumscanner.helper.NotificationsHelper
+import com.example.assamplanetoriumscanner.helper.ResponseHelper
 import com.example.assamplanetoriumscanner.databinding.ActivityLoginScreenBinding
 import com.example.assamplanetoriumscanner.helper.Util
 import com.example.assamplanetoriumscanner.model.User
 import com.example.assamplanetoriumscanner.network.Client
 import com.example.assamplanetoriumscanner.network.RetrofitHelper
-import com.google.android.material.color.DynamicColors
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken

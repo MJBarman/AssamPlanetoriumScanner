@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import cn.pedant.SweetAlert.SweetAlertDialog
-import com.amtron.zooticket.helper.ResponseHelper
+import com.example.assamplanetoriumscanner.helper.ResponseHelper
 import com.example.assamplanetoriumscanner.R
 import com.example.assamplanetoriumscanner.databinding.ActivityScannerScreenBinding
 import com.example.assamplanetoriumscanner.helper.Util

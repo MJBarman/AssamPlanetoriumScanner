@@ -4,22 +4,12 @@ import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cn.pedant.SweetAlert.SweetAlertDialog
-import com.amtron.zooticket.helper.ResponseHelper
-import com.example.assamplanetoriumscanner.helper.Util
 import com.example.assamplanetoriumscanner.databinding.FragmentBookingBinding
-import com.example.assamplanetoriumscanner.network.Client
-import com.example.assamplanetoriumscanner.network.RetrofitHelper
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.gson.JsonObject
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class BookingFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentBookingBinding? = null

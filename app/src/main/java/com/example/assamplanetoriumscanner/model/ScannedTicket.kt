@@ -1,4 +1,4 @@
-package com.example.ticketscanner.model
+package com.example.assamplanetoriumscanner.model
 
 data class ScannedTicket(
     val visitor_name: String,

@@ -1,4 +1,4 @@
-package com.amtron.zooticket.helper
+package com.example.assamplanetoriumscanner.helper
 
 import android.content.Context
 import cn.pedant.SweetAlert.SweetAlertDialog

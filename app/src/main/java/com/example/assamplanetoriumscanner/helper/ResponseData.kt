@@ -1,4 +1,4 @@
-package com.example.ticketscanner.helper
+package com.example.assamplanetoriumscanner.helper
 
 class ResponseData<T>() {
     private val status: String? = null

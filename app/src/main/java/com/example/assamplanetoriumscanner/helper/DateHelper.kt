@@ -1,4 +1,4 @@
-package com.amtron.zooticket.helper
+package com.example.assamplanetoriumscanner.helper
 
 import android.annotation.SuppressLint
 import java.text.SimpleDateFormat
