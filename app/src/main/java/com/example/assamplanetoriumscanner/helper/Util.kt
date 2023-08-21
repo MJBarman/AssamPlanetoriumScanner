@@ -12,7 +12,7 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.example.assamplanetoriumscanner.ui.LoginScreen
-import com.example.ticketscanner.model.User
+import com.example.assamplanetoriumscanner.model.User
 import com.google.gson.Gson
 
 class Util {

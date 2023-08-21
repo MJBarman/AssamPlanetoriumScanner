@@ -1,4 +1,4 @@
-package com.example.ticketscanner.UI.Components
+package com.example.assamplanetoriumscanner.ui
 
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
@@ -12,8 +12,8 @@ import cn.pedant.SweetAlert.SweetAlertDialog
 import com.amtron.zooticket.helper.ResponseHelper
 import com.example.assamplanetoriumscanner.helper.Util
 import com.example.assamplanetoriumscanner.databinding.FragmentBookingBinding
-import com.example.ticketscanner.network.Client
-import com.example.ticketscanner.network.RetrofitHelper
+import com.example.assamplanetoriumscanner.network.Client
+import com.example.assamplanetoriumscanner.network.RetrofitHelper
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.gson.JsonObject
 import org.json.JSONObject
@@ -38,46 +38,46 @@ class BookingFragment : BottomSheetDialogFragment() {
                 showAlertDialog(requireActivity(), "Alert", "Please enter booking number!")
             } else {
                 scannedValue = binding.bookingNumber.text.toString().uppercase()
-                sendBookingDataToServer(scannedValue)
+//                sendBookingDataToServer(scannedValue)
             }
         }
         return binding.root
     }
 
-    private fun sendBookingDataToServer(bookingNumber: String?) {
-        val api = RetrofitHelper.getInstance().create(Client::class.java)
-
-        api.sendBookingDataToServer(
-            Util().getJwtToken(
-                sharedPreferences.getString("user", "").toString()
-            ), scannedValue
-        ).enqueue(object : Callback<JsonObject> {
-            override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
-                if (response.isSuccessful) {
-                    // Handle successful response from the server
-                    val helper = ResponseHelper()
-                    helper.ResponseHelper(response.body())
-                    if (helper.isStatusSuccessful()) {
-                        val obj = JSONObject(helper.getDataAsString())
-                        val status = obj.get("status") as Int
-                        Log.d("status: ", status.toString())
-                        // Create an intent to start the ResultScreen activity and pass the response data
-//                        val intent = Intent(requireActivity(), ResultScreen::class.java)
-//                        intent.putExtra("response_data", helper.getDataAsString())
-//                        startActivity(intent)
-                    } else {
-                        showAlertDialog(requireActivity(), "Alert", helper.getErrorMsg())
-                    }
-                } else {
-                    showAlertDialog(requireActivity(), "Alert", response.message())
-                }
-            }
-
-            override fun onFailure(call: Call<JsonObject>, t: Throwable) {
-                showAlertDialog(requireActivity(), "Alert", "Server Error!")
-            }
-        })
-    }
+//    private fun sendBookingDataToServer(bookingNumber: String?) {
+//        val api = RetrofitHelper.getInstance().create(Client::class.java)
+//
+//        api.sendBookingDataToServer(
+//            Util().getJwtToken(
+//                sharedPreferences.getString("user", "").toString()
+//            ), scannedValue
+//        ).enqueue(object : Callback<JsonObject> {
+//            override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+//                if (response.isSuccessful) {
+//                    // Handle successful response from the server
+//                    val helper = ResponseHelper()
+//                    helper.ResponseHelper(response.body())
+//                    if (helper.isStatusSuccessful()) {
+//                        val obj = JSONObject(helper.getDataAsString())
+//                        val status = obj.get("status") as Int
+//                        Log.d("status: ", status.toString())
+//                        // Create an intent to start the ResultScreen activity and pass the response data
+////                        val intent = Intent(requireActivity(), ResultScreen::class.java)
+////                        intent.putExtra("response_data", helper.getDataAsString())
+////                        startActivity(intent)
+//                    } else {
+//                        showAlertDialog(requireActivity(), "Alert", helper.getErrorMsg())
+//                    }
+//                } else {
+//                    showAlertDialog(requireActivity(), "Alert", response.message())
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+//                showAlertDialog(requireActivity(), "Alert", "Server Error!")
+//            }
+//        })
+//    }
 
     private fun sendResultValue(result: String) {
         val bundle = Bundle()

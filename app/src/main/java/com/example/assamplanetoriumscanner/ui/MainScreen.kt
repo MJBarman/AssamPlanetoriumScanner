@@ -8,7 +8,6 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.assamplanetoriumscanner.R
 import com.example.assamplanetoriumscanner.databinding.ActivityMainBinding
-import com.example.ticketscanner.UI.Components.BookingFragment
 import kotlinx.coroutines.DelicateCoroutinesApi
 
 
@@ -42,13 +41,13 @@ class MainScreen : AppCompatActivity() {
 
 
         binding.dailyScannedCv.setOnClickListener {
-//            val intent = Intent(this@MainScreen, DailyScreen::class.java)
+            val intent = Intent(this@MainScreen, DailyScreen::class.java)
             startActivity(intent)
         }
 
 
         binding.overallScannedCv.setOnClickListener {
-//            val intent = Intent(this@MainScreen, OverallScreen::class.java)
+            val intent = Intent(this@MainScreen, OverallScreen::class.java)
             startActivity(intent)
         }
 
@@ -81,11 +80,11 @@ class MainScreen : AppCompatActivity() {
         }
 
         binding.fabScanner.setOnClickListener {
-//            val intent = Intent(this@MainScreen, ScannerScreen::class.java)
+            val intent = Intent(this@MainScreen, ScannerScreen::class.java)
             startActivity(intent)
 
         }
-//
+
 //        getScannedDetails()
 //        getOverallScannedDetails()
 

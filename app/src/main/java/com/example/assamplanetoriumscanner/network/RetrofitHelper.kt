@@ -1,4 +1,4 @@
-package com.example.ticketscanner.network
+package com.example.assamplanetoriumscanner.network
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitHelper {
 //    private const val apiUrl = "http://assamstatezoo.in/newsitedemo/api/"
-    private const val apiUrl = "https://assamstatezoo.in/api/"
+    private const val apiUrl = "http://103.158.204.169/planetorium/api/"
     private var mClient: OkHttpClient? = null
 
     private val client: OkHttpClient

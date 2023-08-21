@@ -10,9 +10,9 @@ import com.amtron.zooticket.helper.NotificationsHelper
 import com.amtron.zooticket.helper.ResponseHelper
 import com.example.assamplanetoriumscanner.databinding.ActivityLoginScreenBinding
 import com.example.assamplanetoriumscanner.helper.Util
-import com.example.ticketscanner.model.User
-import com.example.ticketscanner.network.Client
-import com.example.ticketscanner.network.RetrofitHelper
+import com.example.assamplanetoriumscanner.model.User
+import com.example.assamplanetoriumscanner.network.Client
+import com.example.assamplanetoriumscanner.network.RetrofitHelper
 import com.google.android.material.color.DynamicColors
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -71,12 +71,10 @@ class LoginScreen : AppCompatActivity() {
                             "please enter valid phone number"
                         )
                     } else {
-//                        login(
-//                            binding.phoneNumber.text.toString(),
-//                            binding.password.text.toString()
-//                        )
-                        startActivity(Intent(this@LoginScreen, MainScreen::class.java))
-
+                        login(
+                            binding.phoneNumber.text.toString(),
+                            binding.password.text.toString()
+                        )
                     }
                 }
             }

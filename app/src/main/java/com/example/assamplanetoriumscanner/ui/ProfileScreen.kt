@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import cn.pedant.SweetAlert.BuildConfig
 import com.example.assamplanetoriumscanner.R
 import com.example.assamplanetoriumscanner.databinding.ActivityProfileScreenBinding
-import com.example.ticketscanner.model.User
+import com.example.assamplanetoriumscanner.model.User
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

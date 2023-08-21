@@ -1,4 +1,4 @@
-package com.example.ticketscanner.network
+package com.example.assamplanetoriumscanner.network
 
 import com.google.gson.JsonObject
 import retrofit2.Call

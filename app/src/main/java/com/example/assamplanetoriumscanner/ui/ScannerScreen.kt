@@ -17,11 +17,10 @@ import androidx.core.content.ContextCompat
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.amtron.zooticket.helper.ResponseHelper
 import com.example.assamplanetoriumscanner.R
-import com.example.assamplanetoriumscanner.databinding.ActivityMainBinding
 import com.example.assamplanetoriumscanner.databinding.ActivityScannerScreenBinding
 import com.example.assamplanetoriumscanner.helper.Util
-import com.example.ticketscanner.network.Client
-import com.example.ticketscanner.network.RetrofitHelper
+import com.example.assamplanetoriumscanner.network.Client
+import com.example.assamplanetoriumscanner.network.RetrofitHelper
 import com.google.android.gms.vision.CameraSource
 import com.google.android.gms.vision.Detector
 import com.google.android.gms.vision.barcode.Barcode
