@@ -1,5 +1,6 @@
 package com.example.assamplanetoriumscanner.ui
 
+import android.content.Intent
 import android.content.SharedPreferences
 import android.content.SharedPreferences.Editor
 import android.content.pm.PackageManager
@@ -63,12 +64,12 @@ class ProfileScreen : AppCompatActivity() {
             val view = layoutInflater.inflate(R.layout.bottom_sheet_exit, null)
             dialog.setContentView(view)
 
-            val btnExit = view.findViewById<Button>(R.id.exit)
+            val btnLogout = view.findViewById<Button>(R.id.btn_logOut)
             val btnCancel = view.findViewById<Button>(R.id.cancel)
 
-            btnExit.setOnClickListener {
-                super.onBackPressed()
-                finishAffinity()
+            btnLogout.setOnClickListener {
+                editor.clear().apply()
+                startActivity(Intent(this@ProfileScreen, LoginScreen::class.java))
             }
 
             btnCancel.setOnClickListener {

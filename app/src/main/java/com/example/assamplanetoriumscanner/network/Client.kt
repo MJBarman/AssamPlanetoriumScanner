@@ -17,7 +17,7 @@ interface Client {
 
     @Headers("Accept: application/json")
     @FormUrlEncoded
-    @POST("scan-data")
+    @POST("scan-ticket")
     fun sendBookingDataToServer(
         @Header("token") token: String,
         @Field("data") bookingNumber: String
