@@ -2,6 +2,6 @@
 <network-security-config>
     <base-config cleartextTrafficPermitted="true" />
     <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">http://asiwt.in/api/</domain>
+        <domain includeSubdomains="true">http://103.158.204.169/planetorium/api/</domain>
     </domain-config>
 </network-security-config>

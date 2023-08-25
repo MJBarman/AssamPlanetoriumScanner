@@ -4,12 +4,23 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.SharedPreferences.Editor
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.assamplanetoriumscanner.R
 import com.example.assamplanetoriumscanner.databinding.ActivityMainBinding
-import kotlinx.coroutines.DelicateCoroutinesApi
-
+import com.example.assamplanetoriumscanner.helper.NotificationsHelper
+import com.example.assamplanetoriumscanner.helper.ResponseHelper
+import com.example.assamplanetoriumscanner.helper.Util
+import com.example.assamplanetoriumscanner.network.Client
+import com.example.assamplanetoriumscanner.network.RetrofitHelper
+import com.google.gson.JsonObject
+import kotlinx.coroutines.*
+import org.json.JSONArray
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 @OptIn(DelicateCoroutinesApi::class)
 class MainScreen : AppCompatActivity() {
@@ -49,6 +60,7 @@ class MainScreen : AppCompatActivity() {
         binding.overallScannedCv.setOnClickListener {
             val intent = Intent(this@MainScreen, OverallScreen::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
 
 
@@ -82,102 +94,110 @@ class MainScreen : AppCompatActivity() {
         binding.fabScanner.setOnClickListener {
             val intent = Intent(this@MainScreen, ScannerScreen::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
 
         }
 
-//        getScannedDetails()
-//        getOverallScannedDetails()
+        getScannedDetails()
+        getOverallScannedDetails()
+
 
     }
 
-//    private fun getOverallScannedDetails() {
-//        val api = RetrofitHelper.getInstance().create(Api.Client::class.java)
-//        GlobalScope.launch {
-//            val call: Call<JsonObject> = api.getOverallScanData(
-//                Util().getJwtToken(
-//                    sharedPreferences.getString("user", "").toString()
-//                ), 1
-//            )
-//            call.enqueue(object : Callback<JsonObject> {
-//                override fun onResponse(
-//                    call: Call<JsonObject>, response: Response<JsonObject>
-//                ) {
-//                    if (response.isSuccessful) {
-//                        val helper = ResponseHelper()
-//                        helper.ResponseHelper(response.body())
-//                        if (helper.isStatusSuccessful()) {
-//                            val obj = JSONObject(helper.getDataAsString())
-//                            val ticketListArray = obj.get("data") as JSONArray
-//                            val totalOverallTickets = obj.get("total") as Int
-//                            editor.putString("overallTicketList", ticketListArray.toString())
-//                            editor.apply()
-//                            binding.tvOverallScanCount.text = totalOverallTickets.toString()
-//                        }
-//                    } else {
-//                        NotificationsHelper().getErrorAlert(
-//                            this@MainScreen, "Response Error Code" + response.message()
-//                        )
-//                    }
-//                }
-//
-//                override fun onFailure(call: Call<JsonObject>, t: Throwable) {
-//                    NotificationsHelper().getErrorAlert(this@MainScreen, "Server Error")
-//                }
-//            })
-//        }
-//    }
 
+    private fun getScannedDetails() {
+        val api = RetrofitHelper.getInstance().create(Client::class.java)
+        GlobalScope.launch {
+            val call: Call<JsonObject> = api.getDailyScanData(
+                Util().getJwtToken(
+                    sharedPreferences.getString("user", "").toString()
+                ), 1
+            )
+            call.enqueue(object : Callback<JsonObject> {
+                override fun onResponse(
+                    call: Call<JsonObject>, response: Response<JsonObject>
+                ) {
+                    if (response.isSuccessful) {
+                        val helper = ResponseHelper()
+                        helper.ResponseHelper(response.body())
 
-//    private fun getScannedDetails() {
-//        val api = RetrofitHelper.getInstance().create(Api.Client::class.java)
-//        GlobalScope.launch {
-//            val call: Call<JsonObject> = api.getDailyScanData(
-//                Util().getJwtToken(
-//                    sharedPreferences.getString("user", "").toString()
-//                ), 1
-//            )
-//            call.enqueue(object : Callback<JsonObject> {
-//                override fun onResponse(
-//                    call: Call<JsonObject>, response: Response<JsonObject>
-//                ) {
-//                    if (response.isSuccessful) {
-//                        val helper = ResponseHelper()
-//                        helper.ResponseHelper(response.body())
-//                        if (helper.isStatusSuccessful()) {
-//                            val obj = JSONObject(helper.getDataAsString())
-//                            val ticketListArray = obj.get("data") as JSONArray
-//                            val totalDailyTickets = obj.get("total") as Int
+                        if (helper.isStatusSuccessful()) {
+                            val obj = JSONObject(helper.getDataAsString())
+//                            val dailyScanDataObject =
+//                                obj.getJSONObject("data").getJSONObject("dailyScanData")
+//                            val ticketListArray = dailyScanDataObject.getJSONArray("data")
 //                            editor.putString("ticketList", ticketListArray.toString())
 //                            editor.apply()
-//                            binding.tvDailyScannedCount.text = totalDailyTickets.toString()
-//                        } else {
-//                            if (helper.getErrorMsg() == "440") {
-//                                Util().sessionCheck(this@MainScreen)
-//                            }
-//                        }
-//                    } else {
-//                        NotificationsHelper().getErrorAlert(
-//                            this@MainScreen, "Response Error Code" + response.message()
-//                        )
-//                    }
-//                }
-//
-//                override fun onFailure(call: Call<JsonObject>, t: Throwable) {
-//                    NotificationsHelper().getErrorAlert(this@MainScreen, "Server Error")
-//                }
-//            })
-//        }
-//    }
+
+                            val totalDailyTickets = obj.getInt("dailyCount")
 
 
-    override fun onBackPressed() {
-        if (!shouldAllowBack()) {
-            return
+                            binding.tvDailyScannedCount.text = totalDailyTickets.toString()
+                        } else {
+                            if (helper.getErrorMsg() == "440") {
+                                Util().sessionCheck(this@MainScreen)
+                            }
+                        }
+                    } else {
+                        NotificationsHelper().getErrorAlert(
+                            this@MainScreen, "Response Error Code" + response.message()
+                        )
+                    }
+
+                }
+
+                override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                    NotificationsHelper().getErrorAlert(this@MainScreen, "Server Error")
+                }
+            })
         }
-        super.onBackPressed()
     }
 
-    private fun shouldAllowBack(): Boolean {
-        return false
+
+    private fun getOverallScannedDetails() {
+        val api = RetrofitHelper.getInstance().create(Client::class.java)
+        GlobalScope.launch {
+            val call: Call<JsonObject> = api.getOverallScanData(
+                Util().getJwtToken(
+                    sharedPreferences.getString("user", "").toString()
+                ), 1
+            )
+            call.enqueue(object : Callback<JsonObject> {
+                override fun onResponse(
+                    call: Call<JsonObject>, response: Response<JsonObject>
+                ) {
+                    if (response.isSuccessful) {
+                        val helper = ResponseHelper()
+                        helper.ResponseHelper(response.body())
+                        if (helper.isStatusSuccessful()) {
+                            val obj = JSONObject(helper.getDataAsString())
+                            Log.d("TAG", "onResponse: $obj")
+                            val ticketListArray = obj.getJSONObject("overallScanData").getJSONArray("data")
+//                            val ticketListArray = obj.get("data") as JSONArray
+                            val overallCount = obj.getInt("overallCount")
+                            editor.putString("overallTicketList", ticketListArray.toString())
+                            editor.apply()
+                            binding.tvOverallScanCount.text = overallCount.toString()
+                        }
+                    } else {
+                        NotificationsHelper().getErrorAlert(
+                            this@MainScreen, "Response Error Code" + response.message()
+                        )
+                    }
+                }
+
+                override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                    NotificationsHelper().getErrorAlert(this@MainScreen, "Server Error")
+                }
+            })
+        }
     }
+
+
+    private fun showErrorMessage(message: String) {
+        NotificationsHelper().getErrorAlert(this@MainScreen, message)
+    }
+
 }
+
+

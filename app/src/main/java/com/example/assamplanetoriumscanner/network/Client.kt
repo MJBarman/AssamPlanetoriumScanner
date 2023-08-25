@@ -25,27 +25,34 @@ interface Client {
 
     @Headers("Accept: application/json")
     @FormUrlEncoded
-    @POST("update-scan-data")
+    @POST("update-scandata")
     fun updateBookingDataToServer(
         @Header("token") token: String,
         @Field("data") bookingNumber: String
     ): Call<JsonObject>
 
 
-    @Headers("Accept: application/json")
-    @GET("get-daily-scan-data")
-    fun getDailyScanData(
-        @Header("token") token: String,
-        @Query("page") count: Int
-    ): Call<JsonObject>
 
-
+    //GET SCANNED OVERALL TICKET LIST
     @Headers("Accept: application/json")
-    @GET("get-overall-scan-data")
+    @FormUrlEncoded
+    @POST("overall-scan")
     fun getOverallScanData(
-        @Header("token") token: String,
-        @Query("page") count: Int
+        @Header("token") token: String?,
+        @Field("page") count: Int?
     ): Call<JsonObject>
+
+    //get daily scans
+    @Headers("Accept: application/json")
+    @FormUrlEncoded
+    @POST("daily-scan")
+    fun getDailyScanData(
+        @Header("token") token: String?,
+        @Field("page") count: Int?
+    ): Call<JsonObject>
+
+
+
 
 
 }

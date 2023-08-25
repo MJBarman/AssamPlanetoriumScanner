@@ -1,6 +1,6 @@
 package com.example.assamplanetoriumscanner.model
 
-data class Booking(
+data class ScannedTicket(
     val id: Int,
     val visitor_id: Int?,
     val booking_no: String,
