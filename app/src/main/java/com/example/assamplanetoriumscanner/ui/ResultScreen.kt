@@ -108,7 +108,7 @@ class ResultScreen : AppCompatActivity() {
                         val status = obj.get("status") as Int
                         Log.d("status: ", status.toString())
                         // Create an intent to start the ResultScreen activity and pass the response data
-//                        val intent = Intent(this@ResultScreen, EndScreenSuccess::class.java)
+                        val intent = Intent(this@ResultScreen, EndScreenSuccess::class.java)
                         startActivity(intent)
                     } else {
                         showAlertDialog(this@ResultScreen, "Alert", helper.getErrorMsg())

@@ -85,7 +85,7 @@
                 android:layout_weight="0.3"
                 android:maxLines="1"
                 android:padding="20dp"
-                android:text="23"
+                android:text=""
                 android:textAlignment="textEnd" />
         </LinearLayout>
 
@@ -125,7 +125,7 @@
                 android:layout_weight="0.3"
                 android:maxLines="1"
                 android:padding="20dp"
-                android:text="23"
+                android:text=""
                 android:textAlignment="textEnd" />
         </LinearLayout>
 

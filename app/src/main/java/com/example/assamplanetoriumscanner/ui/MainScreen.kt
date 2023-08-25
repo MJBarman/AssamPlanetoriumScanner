@@ -120,18 +120,12 @@ class MainScreen : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val helper = ResponseHelper()
                         helper.ResponseHelper(response.body())
-
                         if (helper.isStatusSuccessful()) {
                             val obj = JSONObject(helper.getDataAsString())
-//                            val dailyScanDataObject =
-//                                obj.getJSONObject("data").getJSONObject("dailyScanData")
-//                            val ticketListArray = dailyScanDataObject.getJSONArray("data")
-//                            editor.putString("ticketList", ticketListArray.toString())
-//                            editor.apply()
-
+                            val ticketListArray = obj.getJSONObject("dailyScanData").getJSONArray("data")
+                            editor.putString("ticketList", ticketListArray.toString())
+                            editor.apply()
                             val totalDailyTickets = obj.getInt("dailyCount")
-
-
                             binding.tvDailyScannedCount.text = totalDailyTickets.toString()
                         } else {
                             if (helper.getErrorMsg() == "440") {
@@ -173,7 +167,6 @@ class MainScreen : AppCompatActivity() {
                             val obj = JSONObject(helper.getDataAsString())
                             Log.d("TAG", "onResponse: $obj")
                             val ticketListArray = obj.getJSONObject("overallScanData").getJSONArray("data")
-//                            val ticketListArray = obj.get("data") as JSONArray
                             val overallCount = obj.getInt("overallCount")
                             editor.putString("overallTicketList", ticketListArray.toString())
                             editor.apply()
